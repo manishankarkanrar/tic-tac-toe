@@ -1,7 +1,13 @@
 let boxes = document.querySelectorAll(".box");
 let reset_btn = document.querySelector("#reset");
-let playerName1 = prompt("Enter Player-1 name : ");
-let playerName2 = prompt("Enter Player-2 name : ");
+let playerName1=null;
+while(!playerName1){
+  prompt("Enter Player-1 name : ");
+}
+let playerName2=null;
+while(!playerName2){
+  prompt("Enter Player-2 name : ");
+}
 let turn = true;
 let count = 0;
 
