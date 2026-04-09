@@ -1,97 +1,150 @@
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    background-color: #548687;
-    text-align: center;
-    color: rgb(255, 255, 255);
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+  background-color: #548687;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.undo{
+  height: 5vmin;
+  border-radius: 1rem;
+  cursor: pointer;
 }
 
 h1 {
-    font-family: 'Fredoka', sans-serif;
-    font-weight: 700;
-    font-size: 2.5rem;
-    margin-top: 1.5rem;
-    color: #FFD700;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 2.5rem;
+  margin-top: 1.5rem;
+  color: #FFD700;
 }
 
 main {
-    flex: 1;
+  flex: 1;
 }
 
 .container {
-    height: 70vh;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+  height: 70vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .game {
-    height: 60vmin;
-    width: 60vmin;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 1vmin;
+  height: 60vmin;
+  width: 60vmin;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1vmin;
 }
 
 .box {
-    height: 18vmin;
-    width: 18vmin;
-    border-radius: 4px;
-    font-size: 15vmin;
-    text-align: center;
-    color: red;
-    background-color: #ffffcf;
-    cursor: pointer;
-    transition: transform 0.1s ease;
+  height: 18vmin;
+  width: 18vmin;
+  border-radius: 4px;
+  font-size: 15vmin;
+  text-align: center;
+  color: red;
+  background-color: #ffffcf;
+  cursor: pointer;
+  transition: transform 0.1s ease;
 }
 
 .box:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 #reset {
-    padding: 0.5rem;
-    border-radius: 1rem;
-    font-size: 1.25rem;
-    text-align: center;
-    background-color: #ff6b6b;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  font-size: 1.25rem;
+  text-align: center;
+  background-color: #ff6b6b;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 #reset:hover {
-    background-color: #ff4444;
+  background-color: #ff4444;
 }
 
-footer {
-    padding: 1.5rem;
-    background-color: rgba(0, 0, 0, 0.3);
-    border-top: 2px solid white;
-    font-size: 0.9rem;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 400;
+.footer {
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  padding: 20px 10px;
+  border-top: 2px solid rgba(255, 215, 0, 0.4);
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
 }
 
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Text styling */
+.footer-text {
+  color: #e0e0e0;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+}
+
+.footer-text span {
+  color: #FFD700;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.footer-text span:hover {
+  text-shadow: 0 0 10px #FFD700;
+}
+
+/* LinkedIn icon */
 .linkedin-link {
-    display: inline-block;
+  display: inline-block;
 }
 
+/* Icon styling */
 .linkedin-icon {
-    height: 40px;
-    width: 40px;
-    transition: transform 0.3s ease;
+  height: 45px;
+  width: 45px;
+  transition: all 0.4s ease;
+  border-radius: 50%;
 }
 
+/* Hover effect */
 .linkedin-icon:hover {
-    transform: scale(1.1);
+  transform: translateY(-5px) scale(1.15);
+  box-shadow: 0 0 15px rgba(0, 119, 181, 0.8);
+}
+
+/* Subtle floating animation */
+.linkedin-icon {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-4px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
 }

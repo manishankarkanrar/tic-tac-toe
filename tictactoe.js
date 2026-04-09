@@ -1,19 +1,10 @@
-let boxes = document.querySelectorAll(".box");
+let boxes = Array.from(document.querySelectorAll(".box"));
 let reset_btn = document.querySelector("#reset");
-
-let playerName1 = null;
-while (!playerName1) {
-  playerName1 = prompt("Enter Player-1 name:");
-}
-
-let playerName2 = null;
-while (!playerName2) {
-  playerName2 = prompt("Enter Player-2 name:");
-}
-
-console.log(playerName1, playerName2);
+let playerName1 = prompt("Enter Player-1 name : ")?.trim() || "Player 1";
+let playerName2 = prompt("Enter Player-2 name : ")?.trim() || "Player 2";
 let turn = true;
 let count = 0;
+let lastmove = null;
 
 const winPatterns = [
   [0, 1, 2],
@@ -29,12 +20,27 @@ const winPatterns = [
 function reset_fun() {
   count = 0;
   turn = true;
+  lastmove = null;
   boxes.forEach((box) => {
     box.innerText = "";
     box.disabled = false;
+    box.style.color = "";
   });
 }
 
+function undoFun() {
+  if (lastmove) {
+    lastmove.innerText = "";
+    lastmove.disabled = false;
+    lastmove.style.color = "";
+    turn = !turn;
+    count = Math.max(0, count - 1);
+  }
+  lastmove = null;
+}
+
+let lastMoveButton = document.querySelector(".undo");
+lastMoveButton.addEventListener("click", undoFun);
 reset_btn.addEventListener("click", reset_fun);
 
 boxes.forEach((box) => {
@@ -42,11 +48,14 @@ boxes.forEach((box) => {
     if (box.innerText == "") {
       if (turn) {
         box.innerText = "X";
+        box.style.color = "red";
         turn = false;
       } else {
         box.innerText = "O";
+        box.style.color = "blue";
         turn = true;
       }
+      lastmove = box;
       box.disabled = true;
       count++;
       if (checkWin(box.innerText)) {
@@ -70,26 +79,11 @@ boxes.forEach((box) => {
 });
 
 function checkWin(turnChar) {
-  let arr = [];
-  for (let i in boxes) {
-    if (boxes[i].innerText == turnChar) {
-      arr.push(i);
-    }
-  }
-  let ct = 0;
-  for (let i of winPatterns) {
-    ct = 0;
-    for (let j of i) {
-      if (arr.includes(String(j))) {
-        ct++;
-      } else {
-        ct = 0;
-        break;
-      }
-    }
-    if (ct == 3) {
-      break;
-    }
-  }
-  return ct == 3 ? true : false;
+  const positions = boxes
+    .map((box, index) => (box.innerText === turnChar ? index : -1))
+    .filter((index) => index !== -1);
+
+  return winPatterns.some((pattern) =>
+    pattern.every((index) => positions.includes(index)),
+  );
 }
